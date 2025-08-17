@@ -7,6 +7,16 @@ use std::fs::File;
 use std::io::BufReader;
 use rodio::{Decoder, OutputStream, Sink};
 
+// An alternate way is to use the crate signal-hook = "0.3", where you can handle all the signals the way you want
+
+// let mut signals = Signals::new(&[signal_hook::consts::SIGINT, signal_hook::consts::SIGTERM])?;  Properly handle the error case here
+// match signal{
+// signal_hook::consts::SIGINT => {sigint_handler()},
+// signal_hook::consts::SIGTERM => {sigterm_handler()},
+// _ => {println!("sigint or sigterm")},
+//}
+
+// But since I wanted to understand SIGINT properly, I used ctrlc.
 
 fn main() {
     let running = Arc::new(AtomicBool::new(true));
